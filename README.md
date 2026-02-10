@@ -10,4 +10,9 @@
   alt="Organization"
 />
 
+  <picture>
+    <source srcset="https://github.com/ТВОЙ_НИК/ТВОЙ_НИК/blob/output/snake-dark.svg" media="(prefers-color-scheme: dark)">
+    <img src="https://github.com/ТВОЙ_НИК/ТВОЙ_НИК/blob/output/snake.svg" alt="GitHub Contributions Snake">
+  </picture>
+
 </div>
