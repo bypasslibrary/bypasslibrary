@@ -1,7 +1,7 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 
-const USERNAME = "ТВОЙ_НИК"; // Заменить на свой ник
+const USERNAME = "bypasslibrary"; // Заменить на свой ник
 const OUTPUT_FILE = "dist/snake.svg";
 
 // Количество дней по горизонтали и вертикали (GitHub contribution grid)
