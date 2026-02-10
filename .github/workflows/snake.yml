@@ -1,46 +1,29 @@
-name: Live Snake Animation
+name: Live Snake
 
-# Запуск каждые 5 минут и вручную
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/5 * * * *" # каждые 5 минут
   workflow_dispatch:
 
 jobs:
-  generate-snake:
+  generate:
     runs-on: ubuntu-latest
     steps:
-      # Клонируем репозиторий
       - uses: actions/checkout@v3
 
-      # Генерируем SVG с анимацией змейки
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install node-fetch@2
+
       - name: Generate Snake SVG
-        run: |
-          mkdir -p dist
-          # Генерим анимированную змейку
-          cat > dist/snake.svg << 'EOF'
-<svg xmlns="http://www.w3.org/2000/svg" width="450" height="110" viewBox="0 0 450 110">
-  <!-- 10x10 grid -->
-  <g id="grid">
-    <rect x="0" y="0" width="10" height="10" fill="#C6E0F5"/>
-    <rect x="12" y="0" width="10" height="10" fill="#C6E0F5"/>
-    <rect x="24" y="0" width="10" height="10" fill="#C6E0F5"/>
-    <rect x="36" y="0" width="10" height="10" fill="#C6E0F5"/>
-    <!-- Добавьте остальные квадратики как нужно -->
-  </g>
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: node generate_snake.js
 
-  <!-- Змейка -->
-  <rect id="snake" x="0" y="0" width="10" height="10" fill="#7FE3D7">
-    <animate attributeName="x" values="0;12;24;36;0" dur="5s" repeatCount="indefinite" />
-    <animate attributeName="y" values="0;0;0;0;0" dur="5s" repeatCount="indefinite" />
-  </rect>
-
-  <!-- Съедение клеток -->
-  <animate xlink:href="#grid" attributeName="opacity" values="1;0;1" dur="5s" repeatCount="indefinite"/>
-</svg>
-EOF
-
-      # Пушим в ветку output
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
