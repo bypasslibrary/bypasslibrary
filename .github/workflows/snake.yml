@@ -1,4 +1,4 @@
-name: snake
+name: Generate Snake
 
 on:
   schedule:
@@ -6,17 +6,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  snake:
+  generate-snake:
     runs-on: ubuntu-latest
     steps:
-      - uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: bypasslibrary
-          outputs: dist/snake.svg
+      - uses: actions/checkout@v3
 
-      - uses: crazy-max/ghaction-github-pages@v4
+      - name: Generate GitHub contributions snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ТВОЙ_НИК
+          outputs: |
+            dist/snake.svg
+            dist/snake-dark.svg?palette=github-dark
+
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
