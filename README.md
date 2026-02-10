@@ -7,7 +7,7 @@
 
 <img
   src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=400&size=18&duration=2600&pause=3000&color=9AEFE3&center=true&vCenter=true&width=360&lines=BYPASS+ORGANIZATION"
-  alt="Bypass Organization"
+  alt="Organization"
 />
 
 </div>
