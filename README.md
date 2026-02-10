@@ -10,9 +10,4 @@
   alt="Organization"
 />
 
-  <picture>
-    <source srcset="https://github.com/bypasslibrary/bypasslibrary/blob/output/snake.svg" media="(prefers-color-scheme: dark)">
-    <img src="https://github.com/bypasslibrary/bypasslibrary/blob/output/snake.svg" alt="Live Snake">
-  </picture>
-  
 </div>
